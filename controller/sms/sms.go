@@ -7,8 +7,7 @@ import (
 )
 
 type MsgBody struct {
-	Title string `json:"title"`
-	Body  string `json:"body"`
+	Body string `json:"body"`
 }
 
 type returnMsg map[string]interface{}
@@ -20,7 +19,7 @@ func SendSms(r *gin.Context) {
 		log.Print("参数解析失败", err)
 		return
 	}
-	if err := feishu.SendCard(msgBody.Title, msgBody.Body); err != nil {
+	if err := feishu.SendCard(msgBody.Body); err != nil {
 		r.JSON(200, returnMsg{"code": 400, "msg": err})
 		log.Print("发送失败", err)
 		return
